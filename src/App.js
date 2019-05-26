@@ -1,12 +1,28 @@
-import React from 'react';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { fetchReddit } from "./actions/redditActions";
 import './App.scss';
 
-function App() {
-  return (
-    <div className="App">
-      
-    </div>
-  );
+class App extends Component {
+
+  componentDidMount() {
+    this.props.dispatch(fetchReddit());
+  }
+
+  render() {
+    const { posts } = this.props;
+    return (
+      <div className="App">
+        {posts.map( post => <div key={ post.id }>{ post.id }</div>)}
+      </div>
+    );
+  }
 }
 
-export default App;
+const mapStateToProps = state => {
+  return { 
+    posts: state.posts
+  }
+};
+
+export default connect(mapStateToProps)(App);
