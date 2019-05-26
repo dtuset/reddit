@@ -8,7 +8,7 @@ export const initialState = {
   
   const redditReducer = (state = initialState, action) => {
     
-    console.log(action);
+    //console.log(action);
 
     switch (action.type) {
       case FETCH_POSTS:

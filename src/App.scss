@@ -1,33 +1,115 @@
-.App {
-  text-align: center;
+body {
+  margin:0;
+  padding:0;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
+.top {
+  font-size: 16px;
+  /* align-self: center; */
+  line-height: 40px;
+  color: white;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  /* padding: 50px; */
+  font-size: 20px;
+  background-color: black;
+  z-index: 1;
+  width: 100%;
+  text-align: -webkit-center; 
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.posts {
+  background-color: black;
+  color: whitesmoke;
+}
+
+.post {
+  height: 130px;
+  padding: 5px 10px 1px 5px;
+  background-color: black;
+  color: whitesmoke;
+}
+
+.bottom {
+  font-size: 16px;
+  /* align-self: center; */
+  line-height: 40px;
+  color: rgb(243, 181, 87);
+  position: -webkit-sticky;
+  position: sticky;
+  bottom: 0;
+  /* padding: 50px; */
+  font-size: 12px;
+  background-color: black;
+  z-index: 1;
+  width: 100%;
+  text-align: -webkit-center; 
+}
+
+.hide {
+  transform: translateX(-100%);
+}
+
+/* The side navigation menu */
+.sidebar {
+  margin: 0;
+  padding: 0;
+  width: 25%;
+  min-width: 300px;
+  background-color: black;
+  //position: fixed;
+  height: 100%;
+  //overflow: auto;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  transition: transform 300ms ease;
+  position: relative;
+}
+
+/* Sidebar links */
+.sidebar a {
+  display: block;
+  color: black;
+  padding: 16px;
+  text-decoration: none;
+}
+
+/* Active/current link */
+.sidebar a.active {
+  background-color: #4CAF50;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+/* Links on mouse-over */
+.sidebar a:hover:not(.active) {
+  background-color: #555;
+  color: white;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+/* Page content. The value of the margin-left property should match the value of the sidebar's width property */
+div.content {
+  width: 75%;
+  float: right;
+  padding: 1px 16px;
+  height: 1000px;
+}
+
+/* On screens that are less than 700px wide, make the sidebar into a topbar 
+@media screen and (max-width: 700px) {
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
   }
-  to {
-    transform: rotate(360deg);
+  .sidebar a {float: left;}
+  div.content {margin-left: 0;}
+}*/
+
+/* On screens that are less than 400px, display the bar vertically, instead of horizontally */
+@media screen and (max-width: 400px) {
+  .sidebar a {
+    text-align: center;
+    float: none;
   }
 }
