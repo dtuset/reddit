@@ -1,7 +1,8 @@
-import { FETCH_POSTS, RECEIVE_POSTS, POSTS_ERRORS } from '../actions/types'
+import { FETCH_POSTS, RECEIVE_POSTS, POSTS_ERRORS, DISMISS_POST } from '../actions/types'
 
 export const initialState = {
     posts: [],
+    dismissed: [],
     isFetching: false,
     isError: false
 };
@@ -28,6 +29,14 @@ export const initialState = {
         return {
           ...state,
           isError: true,
+          isFetching: false
+        }
+      case DISMISS_POST:
+        return {
+          ...state,
+          dismissed: [ ...state.dismissed, action.postId],
+          posts: state.posts.filter( post => post.id !== action.postId ),
+          isError: false,
           isFetching: false
         }
       default:

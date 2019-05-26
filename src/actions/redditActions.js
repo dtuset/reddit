@@ -1,7 +1,8 @@
 import { 
   FETCH_POSTS, 
   RECEIVE_POSTS, 
-  POSTS_ERRORS 
+  POSTS_ERRORS,
+  DISMISS_POST
 } from './types'
 
 export const fetch_posts = () => {
@@ -41,3 +42,10 @@ export function fetchReddit() {
 
   };
 }
+
+export const dismiss = postId => {
+  return {
+    type: DISMISS_POST,
+    postId: postId
+  }
+};

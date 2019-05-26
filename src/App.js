@@ -1,13 +1,23 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { fetchReddit } from "./actions/redditActions";
+import * as actions from "./actions/redditActions";
 import './App.scss';
 import './css/post.scss';
 
 class App extends Component {
 
   componentDidMount() {
-    this.props.dispatch(fetchReddit());
+    this.props.dispatch(actions.fetchReddit());
+  }
+
+  removeItem(e,id) {
+    let currentPost = e.currentTarget.parentElement.parentElement.parentElement;
+    if (!this.props.dismissed.includes(id)) {
+      currentPost.classList.add('delete');
+      setTimeout(() => {
+        this.props.dispatch(actions.dismiss(id));
+      },300);
+    }
   }
 
   render() {
@@ -33,7 +43,7 @@ class App extends Component {
                               <span className="m-3">&#10095;</span>
                           </div>
                           <div className="sub-row-b">
-                              <button onClick={(e) => {this.removeItem(post.id)} }><span className="circle cross"></span>Dismiss Post</button>
+                              <button onClick={(e) => {this.removeItem(e,post.id)} }><span className="circle cross"></span>Dismiss Post</button>
                               <span className="comments">{ post.num_comments + ' comments'}</span>
                           </div>
                       </div>
@@ -57,7 +67,8 @@ class App extends Component {
 
 const mapStateToProps = state => {
   return { 
-    posts: state.posts
+    posts: state.posts,
+    dismissed: state.dismissed
   }
 };
 

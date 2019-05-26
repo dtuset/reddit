@@ -51,6 +51,11 @@ body {
   transform: translateX(-100%);
 }
 
+.delete {
+  transition: transform 300ms ease;
+  transform: translateX(-100%);
+}
+
 /* The side navigation menu */
 .sidebar {
   margin: 0;
