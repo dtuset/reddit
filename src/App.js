@@ -6,6 +6,11 @@ import './css/post.scss';
 
 class App extends Component {
 
+  constructor(props) {
+    super(props);
+    this.allPostsRef = React.createRef();
+  }
+
   componentDidMount() {
     this.props.dispatch(actions.fetchReddit());
   }
@@ -20,6 +25,13 @@ class App extends Component {
     }
   }
 
+  removeAllItems() {
+    this.allPostsRef.current.classList.add('delete');
+    setTimeout(() => {
+      this.props.dispatch(actions.dismissAll());
+    },300);
+  }
+
   render() {
     const { posts } = this.props;
     return (
@@ -28,7 +40,7 @@ class App extends Component {
                 <div className="top">
                   Reddit Posts
                 </div>
-                <div className="posts">
+                <div className="posts" ref={ this.allPostsRef }>
                   {posts.map( post => 
                     <div className="post" key={ post.id } >
                       <div className="row">
@@ -51,7 +63,9 @@ class App extends Component {
                   )}
                 </div>
                 <div className="bottom">
-                  Dismiss All
+                  <button onClick={() => {this.removeAllItems()} }>
+                    Dismiss All
+                  </button>
                 </div>
               </div>
               <div className="main">

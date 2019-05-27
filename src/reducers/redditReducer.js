@@ -1,4 +1,10 @@
-import { FETCH_POSTS, RECEIVE_POSTS, POSTS_ERRORS, DISMISS_POST } from '../actions/types'
+import { 
+  FETCH_POSTS,
+  RECEIVE_POSTS,
+  POSTS_ERRORS,
+  DISMISS_POST,
+  DISMISS_ALL_POSTS
+} from '../actions/types'
 
 export const initialState = {
     posts: [],
@@ -36,6 +42,14 @@ export const initialState = {
           ...state,
           dismissed: [ ...state.dismissed, action.postId],
           posts: state.posts.filter( post => post.id !== action.postId ),
+          isError: false,
+          isFetching: false
+        }
+      case DISMISS_ALL_POSTS:
+        return {
+          ...state,
+          dismissed: state.dismissed.concat(state.posts.map( post => post.id )),
+          posts: [],
           isError: false,
           isFetching: false
         }
