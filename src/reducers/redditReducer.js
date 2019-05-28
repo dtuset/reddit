@@ -4,7 +4,8 @@ import {
   POSTS_ERRORS,
   DISMISS_POST,
   DISMISS_ALL_POSTS,
-  VIEW_POST
+  VIEW_POST,
+  ACTIVE_POST
 } from '../actions/types'
 
 export const initialState = {
@@ -60,6 +61,13 @@ export const initialState = {
         return {
           ...state,
           viewed: [ ...state.viewed, action.post.id],
+          active: action.post,
+          isError: false,
+          isFetching: false
+        }
+      case ACTIVE_POST:
+        return {
+          ...state,
           active: action.post,
           isError: false,
           isFetching: false

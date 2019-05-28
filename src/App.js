@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as actions from "./actions/redditActions";
+import Moment from 'react-moment';
 import './App.scss';
 import './css/post.scss';
 
@@ -37,11 +38,13 @@ class App extends Component {
     if (!this.props.viewed.includes(post.id)) {
       currentPost.classList.add('viewed');
       this.props.dispatch(actions.viewPost(post));
+    } else {
+      this.props.dispatch(actions.activePost(post));
     }
   }
 
   render() {
-    const { posts, active } = this.props; console.log(active)
+    const { posts, active } = this.props;
     return (
             <div className="App">
               <div className="sidebar">
@@ -55,7 +58,7 @@ class App extends Component {
                           <div className="sub-row-u">
                               <span className="onoff"></span>
                               <span className="author">{ post.author }</span>
-                              <span className="when">{ post.created * 1000 }</span>
+                              <Moment className="when" date={ post.created * 1000 } fromNow />
                           </div>
                           <div className="sub-row-m" onClick={(e) => {this.viewPost(e,post)} }>
                               <img className="photo" src={ post.thumbnail } alt={post.id} />
@@ -91,10 +94,10 @@ class App extends Component {
 
 const mapStateToProps = state => {
   return { 
-    posts: state.posts,
-    dismissed: state.dismissed,
-    viewed: state.viewed,
-    active: state.active
+    posts: state.redditReducer.posts,
+    dismissed: state.redditReducer.dismissed,
+    viewed: state.redditReducer.viewed,
+    active: state.redditReducer.active
   }
 };
 

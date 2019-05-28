@@ -63,8 +63,8 @@ body {
 .sidebar {
   margin: 0;
   padding: 0;
-  width: 25%;
-  min-width: 300px;
+  width: 30vw;
+  min-width: 20rem;
   background-color: black;
   //position: fixed;
   height: 100%;
@@ -101,6 +101,16 @@ div.content {
   float: right;
   padding: 1px 16px;
   height: 1000px;
+}
+
+.main {
+  width: 100%;
+  padding-top: 5%;
+}
+
+.container {
+  left: 50%;
+  margin: 0;
 }
 
 /* On screens that are less than 700px wide, make the sidebar into a topbar 

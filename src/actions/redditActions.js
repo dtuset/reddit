@@ -4,7 +4,8 @@ import {
   POSTS_ERRORS,
   DISMISS_POST,
   DISMISS_ALL_POSTS,
-  VIEW_POST
+  VIEW_POST,
+  ACTIVE_POST
 } from './types'
 
 export const fetch_posts = () => {
@@ -61,6 +62,13 @@ export const dismissAll = () => {
 export const viewPost = (post) => {
   return {
     type: VIEW_POST,
+    post: post
+  }
+};
+
+export const activePost = (post) => {
+  return {
+    type: ACTIVE_POST,
     post: post
   }
 };
