@@ -1,5 +1,44 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+[REACT_REDDIT_APP_DEMO](http://dtuset-react.s3-website-us-east-1.amazonaws.com/)
+
+## Decisions/Notes
+
+- Start cleanup and created basic structure
+- Implemented Redux / Thunk
+- Created Reddit actions and Reducers
+- Created Html/CSS Sidebar Layout
+- Created Dismiss Single Post Feature
+- Created Dismiss All Post Feature
+- Created View Post & Viewed Posts Features
+- Some CSS Fixes / Modifications
+- Created Active Post Feature
+- Implemented Moment & more CSS
+- Installed redux-localstorage
+- Implemented Persistence
+- Implemented Swipe on Sidebar
+
+I've Decided to stay on just one main component instead of decoupling it into two or three in order to not risk getting out of time frame.
+
+## Install & run on Local environment
+
+1 - Git clone the source code available at 
+[dtuset/reddit](https://github.com/dtuset/reddit)
+
+### `git clone https://github.com/dtuset/reddit`
+
+2 - ... cd into project's folder ...
+
+### `cd reddit`
+
+3 - ... install dependencies ...
+
+### `npm install`
+
+4 - ... start serving ...
+
+### `npm start`
+
 ## Available Scripts
 
 In the project directory, you can run:
@@ -12,10 +51,11 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.<br>
 You will also see any lint errors in the console.
 
-### `npm test`
+Runs the app in the development mode.<br>
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+The page will reload if you make edits.<br>
+You will also see any lint errors in the console.
 
 ### `npm run build`
 
