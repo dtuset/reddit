@@ -60,6 +60,7 @@ class App extends Component {
             <Swipe className="App"
               onSwipedLeft={this.onSwipeLeftListener} 
               onSwipedRight={this.onSwipeRightListener}
+              detectTouch
             >
               <div className="sidebar" ref={ this.sidebarRef }>
                 <div className="top">
