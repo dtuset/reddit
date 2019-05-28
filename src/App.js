@@ -32,8 +32,16 @@ class App extends Component {
     },300);
   }
 
+  viewPost(e,post) {
+    let currentPost = e.currentTarget.parentElement.parentElement;
+    if (!this.props.viewed.includes(post.id)) {
+      currentPost.classList.add('viewed');
+      this.props.dispatch(actions.viewPost(post));
+    }
+  }
+
   render() {
-    const { posts } = this.props;
+    const { posts, active } = this.props; console.log(active)
     return (
             <div className="App">
               <div className="sidebar">
@@ -49,7 +57,7 @@ class App extends Component {
                               <span className="author">{ post.author }</span>
                               <span className="when">{ post.created * 1000 }</span>
                           </div>
-                          <div className="sub-row-m">
+                          <div className="sub-row-m" onClick={(e) => {this.viewPost(e,post)} }>
                               <img className="photo" src={ post.thumbnail } alt={post.id} />
                               <span className="m-2">{ post.title }</span>
                               <span className="m-3">&#10095;</span>
@@ -63,15 +71,17 @@ class App extends Component {
                   )}
                 </div>
                 <div className="bottom">
-                  <button onClick={() => {this.removeAllItems()} }>
+                  <button className="button" onClick={() => {this.removeAllItems()} }>
                     Dismiss All
                   </button>
                 </div>
               </div>
               <div className="main">
-                  <div className="main_auth">main_auth</div>
-                  <div className="main_photo">main_photo</div>
-                  <div className="main_title">main_title</div>
+                <div className="container">
+                  <div className="main_auth">{ active.author }</div>
+                  <img className="main_photo" src={ active.thumbnail } alt={active.id} />
+                  <div className="main_title">{ active.title }</div>
+                </div>
               </div>
               {/*posts.map( post => <div key={ post.id }>{ post.id }</div>)*/}
             </div>
@@ -82,7 +92,9 @@ class App extends Component {
 const mapStateToProps = state => {
   return { 
     posts: state.posts,
-    dismissed: state.dismissed
+    dismissed: state.dismissed,
+    viewed: state.viewed,
+    active: state.active
   }
 };
 

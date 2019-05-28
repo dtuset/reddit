@@ -16,3 +16,9 @@ code {
   display: flex;
   flex-direction: row;
 }
+
+.container {
+  position: fixed;
+  text-align: center;
+  padding: 20px;
+}

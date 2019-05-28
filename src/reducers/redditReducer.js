@@ -3,12 +3,15 @@ import {
   RECEIVE_POSTS,
   POSTS_ERRORS,
   DISMISS_POST,
-  DISMISS_ALL_POSTS
+  DISMISS_ALL_POSTS,
+  VIEW_POST
 } from '../actions/types'
 
 export const initialState = {
     posts: [],
     dismissed: [],
+    viewed: [],
+    active: [],
     isFetching: false,
     isError: false
 };
@@ -50,6 +53,14 @@ export const initialState = {
           ...state,
           dismissed: state.dismissed.concat(state.posts.map( post => post.id )),
           posts: [],
+          isError: false,
+          isFetching: false
+        }
+      case VIEW_POST:
+        return {
+          ...state,
+          viewed: [ ...state.viewed, action.post.id],
+          active: action.post,
           isError: false,
           isFetching: false
         }

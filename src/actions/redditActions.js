@@ -3,7 +3,8 @@ import {
   RECEIVE_POSTS, 
   POSTS_ERRORS,
   DISMISS_POST,
-  DISMISS_ALL_POSTS
+  DISMISS_ALL_POSTS,
+  VIEW_POST
 } from './types'
 
 export const fetch_posts = () => {
@@ -54,5 +55,12 @@ export const dismiss = postId => {
 export const dismissAll = () => {
   return {
     type: DISMISS_ALL_POSTS
+  }
+};
+
+export const viewPost = (post) => {
+  return {
+    type: VIEW_POST,
+    post: post
   }
 };

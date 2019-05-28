@@ -4,43 +4,46 @@ body {
 }
 
 .top {
-  font-size: 16px;
-  /* align-self: center; */
-  line-height: 40px;
+  font-size: 1rem;
+  line-height: 3rem;
   color: white;
   position: -webkit-sticky;
   position: sticky;
   top: 0;
-  /* padding: 50px; */
-  font-size: 20px;
   background-color: black;
   z-index: 1;
   width: 100%;
   text-align: -webkit-center; 
+  font-weight: 500;
 }
 
 .posts {
+  min-height: 100vh;
   background-color: black;
   color: whitesmoke;
 }
 
 .post {
-  height: 130px;
-  padding: 5px 10px 1px 5px;
-  background-color: black;
+  height: 11.4em;
+  padding: 0.2rem 0.5rem 0 0.5rem;
   color: whitesmoke;
 }
 
+.viewed {
+  color: gray;
+  .onoff {
+    border: 1px solid black;
+    background-color: black;
+  }
+}
+
 .bottom {
-  font-size: 16px;
-  /* align-self: center; */
-  line-height: 40px;
+  line-height: 2rem;
   color: rgb(243, 181, 87);
   position: -webkit-sticky;
   position: sticky;
   bottom: 0;
-  /* padding: 50px; */
-  font-size: 12px;
+  font-size: 1rem;
   background-color: black;
   z-index: 1;
   width: 100%;
