@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as actions from "./actions/redditActions";
 import Moment from 'react-moment';
+import {Swipe} from "react-swipe-component"
 import './App.scss';
 import './css/post.scss';
 
@@ -10,6 +11,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.allPostsRef = React.createRef();
+    this.sidebarRef = React.createRef();
   }
 
   componentDidMount() {
@@ -43,17 +45,29 @@ class App extends Component {
     }
   }
 
+  onSwipeLeftListener = () => {
+    this.sidebarRef.current.classList.add('hide', !this.sidebarRef.current.classList.contains('hide'));
+    console.log("Swiped left")
+  }
+  onSwipeRightListener = () => {
+    this.sidebarRef.current.classList.remove('hide', !this.sidebarRef.current.classList.contains('hide'));
+    console.log("Swiped right")
+  }
+
   render() {
     const { posts, active, dismissed, viewed } = this.props;
     return (
-            <div className="App">
-              <div className="sidebar">
+            <Swipe className="App"
+              onSwipedLeft={this.onSwipeLeftListener} 
+              onSwipedRight={this.onSwipeRightListener}
+            >
+              <div className="sidebar" ref={ this.sidebarRef }>
                 <div className="top">
                   Reddit Posts
                 </div>
                 <div className="posts" ref={ this.allPostsRef }>
 
-                  {posts.map( post => 
+                  {posts.map( (post) => 
                     {
                       if (!dismissed.includes(post.id)) {
                         return (
@@ -76,7 +90,7 @@ class App extends Component {
                             </div>
                           </div>
                         )
-                      }
+                      }return false;
                     }
                   )}
 
@@ -95,7 +109,7 @@ class App extends Component {
                 </div>
               </div>
               {/*posts.map( post => <div key={ post.id }>{ post.id }</div>)*/}
-            </div>
+            </Swipe>
     );
   }
 }
