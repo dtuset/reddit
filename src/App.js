@@ -44,7 +44,7 @@ class App extends Component {
   }
 
   render() {
-    const { posts, active } = this.props;
+    const { posts, active, dismissed, viewed } = this.props;
     return (
             <div className="App">
               <div className="sidebar">
@@ -52,26 +52,34 @@ class App extends Component {
                   Reddit Posts
                 </div>
                 <div className="posts" ref={ this.allPostsRef }>
+
                   {posts.map( post => 
-                    <div className="post" key={ post.id } >
-                      <div className="row">
-                          <div className="sub-row-u">
-                              <span className="onoff"></span>
-                              <span className="author">{ post.author }</span>
-                              <Moment className="when" date={ post.created * 1000 } fromNow />
+                    {
+                      if (!dismissed.includes(post.id)) {
+                        return (
+                          <div className={"post" + (viewed.includes(post.id) ? " viewed" : '')} key={ post.id } >
+                            <div className="row">
+                                <div className="sub-row-u">
+                                    <span className="onoff"></span>
+                                    <span className="author">{ post.author }</span>
+                                    <Moment className="when" date={ post.created * 1000 } fromNow />
+                                </div>
+                                <div className="sub-row-m" onClick={(e) => {this.viewPost(e,post)} }>
+                                    <img className="photo" src={ post.thumbnail } alt={post.id} />
+                                    <span className="m-2">{ post.title }</span>
+                                    <span className="m-3">&#10095;</span>
+                                </div>
+                                <div className="sub-row-b">
+                                    <button onClick={(e) => {this.removeItem(e,post.id)} }><span className="circle cross"></span>Dismiss Post</button>
+                                    <span className="comments">{ post.num_comments + ' comments'}</span>
+                                </div>
+                            </div>
                           </div>
-                          <div className="sub-row-m" onClick={(e) => {this.viewPost(e,post)} }>
-                              <img className="photo" src={ post.thumbnail } alt={post.id} />
-                              <span className="m-2">{ post.title }</span>
-                              <span className="m-3">&#10095;</span>
-                          </div>
-                          <div className="sub-row-b">
-                              <button onClick={(e) => {this.removeItem(e,post.id)} }><span className="circle cross"></span>Dismiss Post</button>
-                              <span className="comments">{ post.num_comments + ' comments'}</span>
-                          </div>
-                      </div>
-                    </div>
+                        )
+                      }
+                    }
                   )}
+
                 </div>
                 <div className="bottom">
                   <button className="button" onClick={() => {this.removeAllItems()} }>
